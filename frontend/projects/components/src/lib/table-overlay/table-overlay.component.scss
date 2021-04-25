@@ -1,0 +1,36 @@
+@import 'app-font';
+@import 'app-util';
+@import 'app-filler';
+@import 'app-panel';
+
+:host {
+  @include block-filler();
+}
+
+.container {
+  @include scrollable();
+  @include block-filler();
+  @include focusable-panel();
+  position: relative;
+  box-sizing: border-box;
+}
+
+.loading-shade, .no-data-shade {
+  position: absolute;
+  top: 34px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  min-height: 100px;
+  background-color: rgba($app-background-color, .6);
+  z-index: 1000000000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  //@include font-lg();
+
+  .shade-content {
+    margin-top: 10px;
+  }
+}

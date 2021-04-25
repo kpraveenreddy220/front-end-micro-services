@@ -1,0 +1,12 @@
+kraken:
+  data: testDir
+  version: 1.0.0
+  runtime:
+    server:
+      configpath: tasks/docker/configuration.yaml
+  backend:
+    url: backendUrl
+  influxdb:
+    url: influxdbUrl
+    user: influxdbUser
+    password: influxdbPassword

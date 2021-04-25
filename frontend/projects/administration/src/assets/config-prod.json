@@ -1,0 +1,20 @@
+{
+  "version": "administration-1",
+  "applicationId": "administration",
+  "backendApiUrl": "/api",
+  "docUrl": "/doc",
+  "readmeNode": {
+    "path": "README.md",
+    "type": "FILE",
+    "depth": 0,
+    "length": 0,
+    "lastModified": 0
+  },
+  "keycloakConfiguration": {
+    "url": "/auth",
+    "realm": "kraken",
+    "clientId": "kraken-web"
+  },
+  "expectedRoles": ["ADMIN"],
+  "sseChannels" : ["STORAGE", "RUNTIME"]
+}

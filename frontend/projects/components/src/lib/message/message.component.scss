@@ -1,0 +1,13 @@
+@import 'app-margin';
+@import 'app-padding';
+@import 'app-util';
+
+.message-icon {
+  @include m-r-xs();
+  display: inline-block;
+}
+
+:host(.centered) {
+  @include centered();
+  @include p-v();
+}

@@ -1,0 +1,22 @@
+@import 'app-filler';
+@import 'app-util';
+@import 'app-background';
+@import 'app-font';
+@import 'app-panel';
+
+:host {
+  @include block-filler();
+}
+
+.selected-node {
+  @include background-primary-shade(900);
+}
+
+.cut-node {
+  opacity: 0.8;
+}
+
+.storage-tree {
+  @include focusable-panel();
+  padding-top: 1px;
+}

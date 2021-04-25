@@ -1,0 +1,41 @@
+@import 'app-variables';
+@import 'app-font';
+@import 'app-background';
+
+// Tables
+@mixin table-filler() {
+  width: 100%;
+}
+
+@mixin column-width($width) {
+  max-width: $width;
+  width: $width;
+}
+
+@mixin column-action($width: 50px) {
+  @include column-width($width);
+  text-align: center;
+}
+
+@mixin column-text-ellipsis($width) {
+  max-width: $width;
+  @include text-ellipsis();
+}
+
+@mixin mat-row-selected(){
+  @include background-primary-shade(900);
+}
+
+@mixin mat-selectable-row {
+  cursor: pointer;
+}
+
+.table-filler {
+  @include table-filler();
+}
+
+.table-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}

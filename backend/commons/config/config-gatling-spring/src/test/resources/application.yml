@@ -1,0 +1,34 @@
+kraken:
+  gatling:
+    home: gatlingHome
+    bin: gatlingBin
+    description: Dev test
+    java-opts: -Dfoo="bar"
+    scenario:
+      concurrent-users: 42
+      ramp-up-duration: PT2M
+      peak-duration: PT2M
+      custom-setup: true
+      mode: RUN
+    simulation:
+      name: computerdatabase.BasicSimulation
+      class-name: BasicSimulation
+      package-name: computerdatabase
+    har-path:
+      local: ${kraken.gatling.home}/import.har
+      remote: /path/to/har
+    conf:
+      local: ${kraken.gatling.home}/conf
+      remote: gatling/conf
+    user-files:
+      local: ${kraken.gatling.home}/user-files
+      remote: gatling/user-files
+    lib:
+      local: ${kraken.gatling.home}/lib
+      remote: gatling/lib
+    results:
+      local: ${kraken.gatling.home}/results
+      remote: gatling/results
+    logs:
+      info: ${kraken.gatling.results.local}/info.log
+      debug: ${kraken.gatling.results.local}/debug.log

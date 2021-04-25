@@ -1,0 +1,40 @@
+<form [formGroup]="recordForm" autocomplete=off>
+  <h1 mat-dialog-title>Import HAR <em>{{data.harPath}}</em></h1>
+  <div mat-dialog-content>
+    <lib-help-anchor pageId="GATLING_IMPORT_HAR"></lib-help-anchor>
+    <mat-form-field class="block-filler-x">
+      <input matInput placeholder="Simulation package" formControlName="simulationPackage"
+             cdkFocusInitial
+             required>
+      <mat-error *ngIf="simulationPackage.hasError('required')">
+        Simulation package is required.
+      </mat-error>
+      <mat-error *ngIf="simulationPackage.hasError('pattern')">
+        Invalid simulation package.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="block-filler-x">
+      <input matInput placeholder="Simulation class" formControlName="simulationClass"
+             (keydown.enter)="recordForm.valid ? dialogRef.close({simulationPackage: simulationPackage.value, simulationClass: simulationClass.value}) : null"
+             required>
+      <mat-error *ngIf="simulationClass.hasError('required')">
+        Simulation class is required.
+      </mat-error>
+      <mat-error *ngIf="simulationClass.hasError('pattern')">
+        Invalid simulation class.
+      </mat-error>
+    </mat-form-field>
+    <lib-hosts-selector #hostsSelector [formGroup]="recordForm"
+                        [storageId]="'har-import'"
+                        [multiple]="false"></lib-hosts-selector>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()" type="button">Cancel</button>
+    <button mat-button
+            (click)="import()"
+            type="submit" color="accent"
+            [disabled]="!recordForm.valid">
+      Import
+    </button>
+  </div>
+</form>

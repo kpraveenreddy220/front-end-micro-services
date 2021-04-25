@@ -1,0 +1,38 @@
+<!-- tabindex="0" allows the tree to take the focus-->
+<div fxLayout="column" tabindex="0" [id]="id" (focus)="selectHelpPage()"
+     class="storage-tree panel-vertical hover-show-parent-opacity">
+  <div fxFlex="none">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="panel-header-table-like">
+      <div fxFlex="grow">
+        {{label}}
+      </div>
+      <div fxFlex="none" class="hover-show-child-opacity">
+        <lib-link-selection-button></lib-link-selection-button>
+        <button mat-icon-button matTooltip="Collapse tree" (click)="treeControl.collapseAll()">
+          <lib-icon [icon]="collapseAllIcon"></lib-icon>
+        </button>
+        <button mat-icon-button matTooltip="Open file menu"
+                (click)="treeControl.clearSelection();treeControl.nodeContextMenu($event)">
+          <lib-icon [icon]="menuIcon"></lib-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <cdk-virtual-scroll-viewport #scrollableTree fxFlex="grow" class="scrollable background-background compact-tree"
+                               (click)="treeControl.clearSelection()"
+                               (contextmenu)="treeControl.nodeContextMenu($event)"
+                               itemSize="26"
+                               minBufferPx="400"
+                               maxBufferPx="800">
+    <ng-container *cdkVirtualFor="let node of dataSource">
+      <div [style.padding-left]="depth(node) * 20 + 'px'"
+           class="app-tree-node"
+           [ngClass]="{'selected-node': treeControl.isSelected(node), 'cut-node': copyPaste.isCut(node)}">
+        <lib-storage-node [node]="node" [expanded]="treeControl.isExpanded(node)">
+        </lib-storage-node>
+      </div>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+  <ng-template [cdkPortalOutlet]="contextualMenu"></ng-template>
+</div>

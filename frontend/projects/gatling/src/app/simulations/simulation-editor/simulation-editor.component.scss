@@ -1,0 +1,10 @@
+@import 'app-util';
+
+:host {
+  @include hover-show-parent-opacity(".buttons")
+}
+
+.buttons {
+  @include top-right-absolute();
+  @include hover-show-child-opacity();
+}

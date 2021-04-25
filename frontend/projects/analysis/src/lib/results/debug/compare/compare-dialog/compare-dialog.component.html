@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Compare Debug</h1>
+<div mat-dialog-content>
+  <lib-help-anchor pageId="GATLING_COMPARE_DEBUG"></lib-help-anchor>
+  <lib-message *ngIf="loading" centered="true" level="loading">Please wait...</lib-message>
+  <div *ngIf="!loading">
+    <div fxLayout="row" fxLayoutGap="40px">
+      <div fxFlex="50">
+        <lib-debug-entry-selector [results]="data.results"
+                                  [debugEntries]="debugEntries"
+                                  [debugEntryId]="data.left.id"
+                                  [resultId]="data.left.resultId"
+                                  (debugSelected)="selectLeft($event)"></lib-debug-entry-selector>
+
+      </div>
+      <div fxFlex="50">
+        <lib-debug-entry-selector [results]="data.results"
+                                  [debugEntries]="debugEntries"
+                                  [debugEntryId]="data.right.id"
+                                  [resultId]="data.right.resultId"
+                                  (debugSelected)="selectRight($event)"></lib-debug-entry-selector>
+      </div>
+    </div>
+    <div class="diff">
+      <lib-message *ngIf="loadingDiff" centered="true" level="loading">Please wait...</lib-message>
+      <lib-code-diff *ngIf="!loadingDiff" [left]="left" [right]="right" mode="text"></lib-code-diff>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()" type="button">Close</button>
+</div>

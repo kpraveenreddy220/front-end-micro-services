@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutAlign="start center"
+     (mouseenter)="hover = true"
+     (mouseleave)="hover = false"
+     (contextmenu)="treeControl.nodeContextMenu($event, node)">
+  <lib-toggle-button *ngIf="hasChild" [expanded]="treeControl.isExpanded(node)"
+                     (click)="treeControl.toggle(node)"></lib-toggle-button>
+  <button *ngIf="!hasChild" mat-icon-button disabled></button>
+  <span fxFlex class="node-label text-ellipsis no-selection"
+        [ngClass]="color | colorToTextClass"
+        [title]="node.path + ' - ' +  (node.length | fileSize) + ' - '+ (node.lastModified | dateTimeToStringMs)"
+        (click)="treeControl.nodeClick($event, node)"
+        (dblclick)="treeControl.mouseNodeDoubleClick($event, node)">
+    <lib-icon [icon]="node | storageNodeToIcon" [state]="expanded ? 'expanded' : ''"></lib-icon>
+    {{node | storageNodeToName}}
+  </span>
+  <div fxFlex="none">
+    <ng-template [cdkPortalOutlet]="nodeButtons"></ng-template>
+  </div>
+</div>

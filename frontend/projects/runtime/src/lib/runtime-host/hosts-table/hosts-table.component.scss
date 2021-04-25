@@ -1,0 +1,31 @@
+@import 'app-filler';
+@import 'app-util';
+@import 'app-compact';
+@import 'app-table';
+@import 'app-font';
+@import 'app-background';
+
+:host {
+  @include block-filler();
+  @include compact-table();
+}
+
+table {
+  @include table-filler();
+}
+
+.mat-column-name, .mat-column-addresses, .mat-column-cpu, .mat-column-memory {
+  @include column-text-ellipsis(100px);
+}
+
+.mat-column-buttons {
+  @include column-action(100px);
+}
+
+.mat-row {
+  @include mat-selectable-row();
+}
+
+.mat-row-selected {
+  @include mat-row-selected();
+}
